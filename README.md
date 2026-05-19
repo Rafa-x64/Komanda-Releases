@@ -1,160 +1,127 @@
-# 🚀 KOMANDA | The Ultimate Restaurant OS
+# 🚀 KOMANDA — Sistema Integral de Gestión Contable y Operativa para Restaurantes
 
-> "Gestionar un restaurante sin KOMANDA no es mala suerte, es una deficiencia operativa."
+[![Monorepo](https://img.shields.io/badge/Workspace-pnpm-F6A90A?style=for-the-badge&logo=pnpm&logoColor=white)](https://pnpm.io/)
+[![Frontend](https://img.shields.io/badge/Frontend-Vue%203%20%2B%20Vite-4FC08D?style=for-the-badge&logo=vue.js&logoColor=white)](https://vuejs.org/)
+[![Backend](https://img.shields.io/badge/Backend-Node.js%20%2B%20Express-339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
+[![Database](https://img.shields.io/badge/Database-PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+[![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](./LICENSE)
 
-Bienvenido al repositorio de **KOMANDA**. Si estás aquí es porque entiendes que el caos en la cocina y la administración no se arregla con más personal, sino con mejor software. Este es un sistema con visión de **SaaS** diseñado para aniquilar la ineficiencia en inventarios, ventas, nóminas y pedidos. No estamos inventando la rueda, la estamos haciendo de fibra de carbono para que ruede sola.
+**Komanda** es un moderno sistema contable y operativo híbrido de clase empresarial (SaaS) estructurado bajo un monorepo modular. Diseñado específicamente para optimizar la cadena de valor de restaurantes medianos y grandes, automatiza desde la comanda física en mesa hasta el balance general y estado de resultados bajo normas contables estándares.
 
----
+Esta es la **distribución pública y compilada (Release)** de la plataforma, lista para ser instalada e iniciada con cero configuraciones de desarrollo complejas.
 
-## 📌 Tabla de Contenidos
-
-1. [🧠 La Filosofía (Arquitectura > Improvisación)](#la-filosofía-arquitectura-improvisación)
-2. [✨ Módulos Principales](#módulos-principales)
-   - [📦 Inventario & Back-flushing (El Núcleo)](#inventario-back-flushing-el-núcleo)
-   - [🧾 Ventas & POS (Point of Sale)](#ventas-pos-point-of-sale)
-   - [🍳 Cocina en Tiempo Real (KDS)](#cocina-en-tiempo-real-kds)
-   - [💰 Pagos & Nómina](#pagos-nómina)
-3. [🛠 Tech Stack](#tech-stack)
-4. [📂 Estructura del Proyecto](#estructura-del-proyecto)
-5. [🚀 Guía de Instalación](#guía-de-instalación)
-6. [🏆 Reglas de Oro](#reglas-de-oro-no-las-rompas-o-mal-por-todos)
+> [!IMPORTANT]
+> **Esta versión está empaquetada para producción:** Todos los archivos TypeScript y Vue 3 han sido transpi-lados y obfuscados a código JavaScript nativo minificado. Tu código de desarrollo está a salvo, y los usuarios finales tienen todo lo necesario para correr el sistema de forma veloz e íntegra.
 
 ---
 
-## 🧠 La Filosofía (Arquitectura > Improvisación)
+## 🌟 Características Destacadas
 
-Este proyecto no es un "reguero" más. Está construido bajo una **Arquitectura Modular (Domain-Driven Design Lite)**.
-
-¿Qué significa esto para ti como dev? Que el sistema se divide en **unidades de negocio autónomas**. Si mañana quieres cambiar el módulo de Nómina, no tienes que rezar para que no explote el Inventario. Todo está separado, desacoplado y listo para escalar a mil sucursales si es necesario.
-
----
-
-## ✨ Módulos Principales
-
-### 📦 Inventario & Back-flushing (El Núcleo)
-
-El inventario es el corazón logístico. Aquí aplicamos **Back-flushing**:
-
-- **Descuento Atómico:** Al confirmar una comanda de 2 Sándwiches Italianos, el sistema consulta la **Receta** y descuenta exactamente la proporción (ej. 200g de tomate, 4 panes).
-- **Trazabilidad:** Manejamos Unidades de compra (Sacos/Kilos) vs Unidades de consumo (Gramos/Unidades).
-- **Alertas de Re-orden:** Notificaciones automáticas cuando el stock llega al punto crítico. Evita el "se nos acabó la carne" en pleno servicio.
-
-### 🧾 Ventas & POS (Point of Sale)
-
-- Generación de facturas instantáneas.
-- Afiliación de clientes para fidelización.
-- Integración directa con el flujo de caja y reportes financieros.
-
-### 🍳 Cocina en Tiempo Real (KDS)
-
-- **WebSockets al poder:** Los pedidos llegan de la Tablet del mesero a la pantalla del chef instantáneamente.
-- **Cronómetro de Pedidos:** Visualización del tiempo de espera para optimizar el servicio y evitar cuellos de botella.
-
-### 💰 Pagos & Nómina
-
-- **Gestión de Gastos:** Registro de servicios (luz, agua, gas) y cuentas por pagar a proveedores.
-- **Comisiones por Desempeño:** Cálculo automático de pagos basado en productividad. Premiamos a los que más "carrean" el restaurante.
+* 🏪 **Almacén e Inventario Inteligente (CPP):** Cálculo automático del **Costo Promedio Ponderado** en cada compra de insumos con control de stock crítico y mermas.
+* 🍽️ **Menú, Recetas y Costeo en Tiempo Real:** Fórmulas de platos dinámicas vinculadas al inventario que calculan costos de producción al instante y sugieren márgenes de ganancia.
+* 💳 **Punto de Venta Unificado (POS):** Cola de cobro centralizada orientada al cajero con soporte de múltiples transacciones cruzadas (Efectivo, Pago Móvil, Tarjeta, Divisas en cobros mixtos).
+* 🍽️ **KDS Monitor de Cocina (Tiempo Real):** Flujo síncrono mediante WebSockets nativos que conecta al cajero, mesa, mesero y monitores de preparación de forma instantánea.
+* 💰 **Contabilidad Automatizada:** Asientos de partida doble en el Libro Diario generados de forma atómica por cada compra, venta o gasto operativo.
+* 📊 **Dashboard Gerencial Analítico:** KPIs financieros reales de ventas netas, costos acumulados y reportes exportables de rentabilidad de recetas.
 
 ---
 
-## 🛠 Tech Stack & Arquitectura
+## 📂 Estructura del Empaquetado Público
 
-### 🧠 La Filosofía (Arquitectura > Improvisación)
+Las compilaciones de producción de esta release están organizadas de forma limpia en el workspace:
 
-Este proyecto no es un "reguero" más. Está construido bajo una **Arquitectura Híbrida Modular (Domain-Driven Design Lite)**.
-¿Qué significa esto para ti como dev? Que el sistema se divide en **unidades de negocio autónomas**. Si mañana quieres cambiar el módulo de Nómina, no tienes que rezar para que no explote el Inventario. Todo está separado, desacoplado y listo para escalar a mil sucursales si es necesario.
-
-### 🌐 Frontend (Komanda-web)
-
-- **Framework Principal:** Vue 3 (Usando estrictamente **Composition API** y la etiqueta `<script setup>`).
-- **Build Tool:** Vite (Desarrollo ultrarrápido y compilación optimizada).
-- **Lenguaje:** TypeScript / JavaScript.
-- **Estilos y UI:**
-  - Vanilla CSS (Usando CSS Variables personalizadas para los temas, colores como `--KOrange` y `--bg-body`).
-  - Bootstrap 5 (Para el sistema de grid fluido, utilities y componentes base).
-- **Enrutamiento:** Vue Router.
-- **Iconografía:** Lucide Vue Next (`lucide-vue-next`) y Bootstrap Icons (`bi`).
-
-### ⚙️ Backend (Komanda-api)
-
-- **Arquitectura:** Híbrida y modular (DDD-Lite).
-- **Entornos de Ejecución:**
-  - Node.js (Principal motor para APIs RESTful de alto rendimiento y WebSockets).
-  - PHP (Acompañando lógica heredada o endpoints específicos).
-- **Framework Node:** Express.js.
-- **Lenguaje (Node):** TypeScript (Tipado estricto pero pragmático).
-- **Validaciones (Input):** Zod (Para validar fuertemente los esquemas de entrada antes de que toquen los controladores).
-
-### 🗄️ Base de Datos
-
-- **Motor:** PostgreSQL.
-- **Reglas de Diseño:**
-  - Nombres de tablas siempre en **plural y en inglés** (Ej: `users`, `orders`).
-  - Columnas siempre en **snake_case** (Ej: `created_at`).
-
-### 📦 Gestión y Herramientas del Proyecto
-
-- **Estructura del Proyecto:** Monorepo.
-- **Gestor de Paquetes:** `pnpm` (o en su defecto `bun`). Obligatorio para instalar dependencias y gestionar los workspaces del monorepo rápidamente.
-- **Tiempo Real:** WebSockets (Sincronización letal entre la vista del Mesero y el KDS de Cocina).
-
----
-
-## 📂 Estructura del Proyecto
-
-Mantenemos una simetría entre Front y Back para que no te pierdas en el limbo de las carpetas.
-
-#### Link al documento de estructura: [STRUCTURE.md](./docs/STRUCTURE.md)
-
----
-
-## 🚀 Guía de Instalación
-
-Para que no pierdas tiempo peleando con el entorno, hemos preparado guías específicas según tu sistema operativo. Elige la tuya y estarás listo en minutos:
-
-- 🐧 [**Guía para Debian**](./docs/instalation-guides/DEBIAN.MD) (Stable/Testing)
-- 🧡 [**Guía para Ubuntu**](./docs/instalation-guides/UBUNTU.MD) (Server/Desktop)
-- 🪟 [**Guía para Windows**](./docs/instalation-guides/WINDOWS.MD) (PowerShell/Winget)
-
-### Inicio rápido (Universal)
-
-Si ya tienes el entorno listo (Node v20+, Postgres, pnpm):
-
-```bash
-# 1. Clona el repo y actualiza
-git clone https://github.com/Rafa-x64/Komanda.git
-cd Komanda
-git pull origin master
-
-# 2. Instala dependencias (Monorepo)
-pnpm install
-
-# 3. Importación y configuración de la base de datos
-# Asegúrate de crear la base de datos "komanda_db" en tu PostgreSQL
-# Pudes usar psql para importar si tienes un dump o crearla directamente
-# psql -U postgres -c "CREATE DATABASE komanda_db;"
-
-# 4. Configura variables
-cp .env.example .env
-# IMPORTANTE: Asegurate de ingresar tus credenciales de Postgres en el .env
-# DB_PORT=5432
-# DB_USER=postgres
-# DB_PASSWORD=postgres
-# DB_NAME=komanda_db
-
-# 5. Corre todo el ecosistema (API + Web)
-pnpm run komanda
+```text
+releases/
+├── 📂 database/
+│   └── 📜 Database_Komanda.sql          # Esquema y semillas PostgreSQL listos para restaurar
+├── 📂 Komanda-api/
+│   ├── 📂 dist/                         # Servidor Express compilado en JavaScript (.js)
+│   ├── 📜 .env.example                  # Plantilla de variables de entorno para producción
+│   └── 📜 package.json                  # Dependencias productivas del Backend
+├── 📂 Komanda-web/
+│   └── 📂 dist/                         # Bundle estático del Frontend optimizado (HTML/CSS/JS)
+├── 📜 package.json                      # Orquestador del Monorepo de producción
+└── 📜 pnpm-workspace.yaml              # Configuración simplificada de espacios de trabajo
 ```
 
 ---
 
-## 🏆 Reglas de Oro (No las rompas o mal por todos)
+## 🛠️ Guía de Instalación y Despliegue Rápido
 
-- **Código Minimalista:** Si funciona en 3 líneas de forma legible, no escribas 10.
-- **Clean Code:** Nada de comentarios obvios. El código debe leerse como una novela.
-- **Modularidad Total:** Prohibido importar lógica de un módulo a otro de forma directa. Usa servicios compartidos o eventos.
-- **Optimización:** Cada query a la DB cuenta. No traigas el mundo entero si solo necesitas un ID.
+Sigue estos 3 simples pasos para poner en marcha **Komanda** en tu servidor local o de producción:
+
+### 1️⃣ Inicializar la Base de Datos (PostgreSQL)
+Abre tu consola de PostgreSQL o tu cliente gráfico (ej: PGAdmin, DBeaver) y ejecuta:
+1. Crea una base de datos vacía llamada `komanda_db`.
+2. Restaura el esquema y las semillas iniciales desde el archivo provisto en la release:
+   ```bash
+   psql -U postgres -d komanda_db -f database/Database_Komanda.sql
+   ```
+
+### 2️⃣ Configurar Entorno del Backend
+1. Entra a la carpeta de la API: `cd Komanda-api`
+2. Renombra o duplica el archivo `.env.example` a `.env`:
+   ```bash
+   cp .env.example .env
+   ```
+3. Edita las variables de entorno de tu archivo `.env` según tu base de datos local:
+   ```env
+   PORT=3000
+   NODE_ENV=production
+
+   # Conexión a tu Postgres
+   DB_HOST=localhost
+   DB_PORT=5432
+   DB_USER=postgres
+   DB_PASSWORD=tu_contrasena_aqui
+   DB_NAME=komanda_db
+   ```
+
+### 3️⃣ Instalar y Levantar el Monorepo
+Regresa a la raíz de la carpeta `releases/` y arranca la aplicación completa en un solo comando:
+```bash
+# 1. Instalar dependencias de producción y herramientas de servidor
+pnpm install
+
+# 2. Levantar el ecosistema completo (POS, Backend y PHP de soporte)
+pnpm start
+```
+
+> [!NOTE]
+> `pnpm start` utiliza `concurrently` para levantar de forma orquestada:
+> * **El Frontend Web** en el puerto `5173` corriendo sobre un servidor estático ultraligero y optimizado (`serve`).
+>   * *Acceso:* `http://localhost:5173`
+> * **La API del Backend** corriendo en Express sobre el puerto `3000`.
+>   * *Acceso:* `http://localhost:3000`
+> * **El servidor PHP** de soporte ejecutándose en el puerto `8000`.
+>   * *Acceso:* `http://localhost:8000`
 
 ---
 
-> PD: Desarrollado con ❤️ (y mucha terminal) por un fanático del minimalismo extremo. ¿Dudas? Abre un issue o simplemente haz un buen PR.
+## 📜 Historial de Cambios Recientes (Changelog)
+
+A continuación se destacan las últimas mejoras incorporadas en esta distribución:
+
+### 🚀 v0.4.0 — ¡La Release Definitiva de Producción! (Última Actualización)
+* **Empaquetador Automatizado Blindado (`build-release.sh`):** Implementación de un script inteligente y blindado en bash que transpila, obfuscación y empaqueta el frontend y backend en JavaScript nativo eliminando el código fuente original para proteger el 100% de la propiedad intelectual.
+* **Orquestador Monorepo de Producción:** Creación de los archivos maestros de pnpm que permiten a los usuarios finales instalar y levantar todo el sistema (POS, API y PHP) con un solo comando unificado `pnpm start`.
+* **Aislamiento Estricto Multi-Tenant:** Corrección definitiva del asignador secuencial de códigos de pedidos a nivel de base de datos para asegurar el aislamiento de datos por restaurante y evitar colisiones entre sucursales.
+* **Globalización de Métodos de Pago:** Transición de métodos de pago universales cargados automáticamente por semilla en la base de datos a nivel SaaS.
+* **Cero Errores de Tipado en Backend:** Resueltas las 8 advertencias de tipado estricto en TypeScript (`get_schema.ts`, validadores Zod con `message`, `kitchen.service.ts` y campos de perfil en `settings.controller.ts`) para una compilación 100% limpia y óptima.
+* **Estabilización Contable y de Dashboard:** Redirección de KPIs y métricas del panel administrativo a la vista real `contabilidad.v_estado_resultados`, solucionando el problema de datos vacíos.
+* **Recetas con Costo Real (CPP):** Sincronización del costo ponderado dinámico para recetas e ingredientes, eliminando valores en cero en el Reporte de Rentabilidad.
+
+### 🚀 v0.3.0
+* **Dashboard Analítico Real:** Sustitución de datos simulados por KPIs reales y soporte de pronósticos predictivos a 7 días.
+* **Sincronización POS/KDS en Tiempo Real:** WebSocket nativo robustecido para conectar la toma de comanda del mesero y el monitor de cocina instantáneamente.
+* **Resolución de Conflictos de Puertos:** Control automático de procesos zombies en el puerto 3000 (EADDRINUSE).
+
+---
+
+## 🔒 Licencia y Seguridad
+
+El software se distribuye compilado bajo licencia comercial privada del autor. Queda prohibida la descompilación o ingeniería inversa del bundle distribuido en esta carpeta de releases para propósitos comerciales no autorizados.
+
+---
+
+> _"Gestionar un restaurante sin KOMANDA no es mala suerte, es una deficiencia operativa."_

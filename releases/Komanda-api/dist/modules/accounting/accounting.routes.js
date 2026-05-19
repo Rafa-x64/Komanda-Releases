@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.accountingRouter = void 0;
+const express_1 = require("express");
+const accounting_controller_1 = require("./accounting.controller");
+const auth_middleware_1 = require("../../shared/middleware/auth.middleware");
+exports.accountingRouter = (0, express_1.Router)();
+exports.accountingRouter.use(auth_middleware_1.authMiddleware, (0, auth_middleware_1.requireRole)("admin"));
+exports.accountingRouter.get("/v-balance-general", accounting_controller_1.AccountingController.getVBalanceGeneral);
+exports.accountingRouter.get("/v-estado-resultados", accounting_controller_1.AccountingController.getVEstadoResultados);
+exports.accountingRouter.get("/journal-entries", accounting_controller_1.AccountingController.getJournalEntries);

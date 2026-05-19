@@ -1,0 +1,15 @@
+{
+  "name": "komanda-production",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start:api": "pnpm --filter komanda-api start",
+    "start:web": "npx serve -s Komanda-web/dist -l 5173",
+    "start:php": "php -S localhost:8000 -t ./Komanda-api/dist/",
+    "start": "concurrently --kill-others -n \"WEB,API,PHP\" -c \"cyan,green,magenta\" \"pnpm start:web\" \"pnpm start:api\" \"pnpm start:php\""
+  },
+  "dependencies": {
+    "concurrently": "^8.2.2",
+    "serve": "^14.2.4"
+  }
+}

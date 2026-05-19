@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.warehouseRouter = void 0;
+const express_1 = require("express");
+const warehouse_controller_1 = require("./warehouse.controller");
+const auth_middleware_1 = require("../../shared/middleware/auth.middleware");
+exports.warehouseRouter = (0, express_1.Router)();
+exports.warehouseRouter.use(auth_middleware_1.authMiddleware);
+exports.warehouseRouter.get("/", warehouse_controller_1.WarehouseController.list);
+exports.warehouseRouter.get("/unidades", warehouse_controller_1.WarehouseController.getUnidades);
+exports.warehouseRouter.post("/", warehouse_controller_1.WarehouseController.create);
+exports.warehouseRouter.patch("/:id", warehouse_controller_1.WarehouseController.update);
+exports.warehouseRouter.delete("/:id", warehouse_controller_1.WarehouseController.delete);

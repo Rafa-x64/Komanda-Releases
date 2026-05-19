@@ -1,0 +1,14 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.menuRouter = void 0;
+const express_1 = require("express");
+const menu_controller_1 = require("./menu.controller");
+const auth_middleware_1 = require("../../shared/middleware/auth.middleware");
+exports.menuRouter = (0, express_1.Router)();
+exports.menuRouter.use(auth_middleware_1.authMiddleware);
+exports.menuRouter.get("/recetas", menu_controller_1.MenuController.getRecipes);
+exports.menuRouter.post("/recetas", menu_controller_1.MenuController.createRecipe);
+exports.menuRouter.put("/recetas/:id", menu_controller_1.MenuController.updateRecipe);
+exports.menuRouter.delete("/recetas/:id", menu_controller_1.MenuController.deleteRecipe);
+exports.menuRouter.get("/categorias", menu_controller_1.MenuController.getCategories);
+exports.menuRouter.post("/categorias", menu_controller_1.MenuController.createCategory);

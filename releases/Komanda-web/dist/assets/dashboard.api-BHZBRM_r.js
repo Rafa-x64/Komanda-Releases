@@ -1,0 +1,1 @@
+import{f as t}from"./auth.api-DatmY5jK.js";async function r(){return(await t("/dashboard/admin/stats")).data}async function e(){return(await t("/dashboard/kitchen/orders")).data}export{e as a,r as f};
